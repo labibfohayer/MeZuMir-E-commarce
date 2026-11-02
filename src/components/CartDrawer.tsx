@@ -12,7 +12,7 @@ import {
   User,
   FileText
 } from 'lucide-react';
-import { CartItem, OrderFormData } from '../types';
+import { CartItem, OrderFormData, RecordedOrder } from '../types';
 import { BRAND_INFO } from '../data/products';
 
 interface CartDrawerProps {
@@ -107,6 +107,34 @@ ${itemsList}
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/8801854840499?text=${encodedMessage}`;
+
+    // Record order in local storage for Admin Panel
+    try {
+      const newOrder: RecordedOrder = {
+        id: 'ORD-' + Date.now().toString().slice(-6),
+        customerName: formData.customerName,
+        phone: formData.phone,
+        areaAddress: formData.areaAddress,
+        paymentMethod: formData.paymentMethod,
+        specialNotes: formData.specialNotes,
+        items: items.map((it) => ({
+          productId: it.product.id,
+          productName: it.product.bengaliName,
+          unit: it.product.unit,
+          price: it.product.price,
+          quantity: it.quantity,
+        })),
+        totalAmount,
+        status: 'new',
+        createdAt: new Date().toISOString(),
+      };
+      const existingOrders: RecordedOrder[] = JSON.parse(
+        localStorage.getItem('mezumir_orders') || '[]'
+      );
+      localStorage.setItem('mezumir_orders', JSON.stringify([newOrder, ...existingOrders]));
+    } catch (err) {
+      console.warn('LocalStorage save failed:', err);
+    }
 
     // Open WhatsApp
     window.open(whatsappUrl, '_blank');

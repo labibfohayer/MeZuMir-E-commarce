@@ -32,3 +32,42 @@ export interface OrderFormData {
   paymentMethod: 'bKash' | 'Cash on Delivery';
   specialNotes?: string;
 }
+
+export type OrderStatus = 'new' | 'confirmed' | 'preparing' | 'delivered' | 'cancelled';
+
+export interface RecordedOrder {
+  id: string;
+  customerName: string;
+  phone: string;
+  areaAddress: string;
+  paymentMethod: 'bKash' | 'Cash on Delivery';
+  specialNotes?: string;
+  items: {
+    productId: string;
+    productName: string;
+    unit: string;
+    price: number;
+    quantity: number;
+  }[];
+  totalAmount: number;
+  status: OrderStatus;
+  createdAt: string;
+}
+
+export interface StoreSettings {
+  name: string;
+  headline: string;
+  subheadline: string;
+  tagline: string;
+  identity: string;
+  serviceArea: string;
+  deliveryChargeText: string;
+  minOrderAmount: number;
+  bkashNumber: string;
+  phone: string;
+  whatsappUrl: string;
+  facebookUrl: string;
+  orderHours: string;
+  deliveryTimeEstimate: string;
+  announcementNotice?: string;
+}

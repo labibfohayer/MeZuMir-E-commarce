@@ -5,9 +5,10 @@ import { BRAND_INFO } from '../data/products';
 
 interface FooterProps {
   onOpenChecklist: () => void;
+  onNavigateAdmin?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenChecklist }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenChecklist, onNavigateAdmin }) => {
   return (
     <footer className="bg-stone-900 text-stone-300 pt-12 pb-24 md:pb-12 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,6 +67,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenChecklist }) => {
                   সচরাচর জিজ্ঞাসা (FAQ)
                 </a>
               </li>
+              {onNavigateAdmin && (
+                <li className="pt-1 border-t border-stone-800">
+                  <button
+                    onClick={onNavigateAdmin}
+                    className="hover:text-emerald-400 text-stone-400 transition text-[11px] flex items-center gap-1.5"
+                  >
+                    <span>🔐 অ্যাডমিন প্যানেল (/admin)</span>
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
