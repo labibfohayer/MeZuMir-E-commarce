@@ -110,7 +110,7 @@ export const productsData: Product[] = [
     price: 100,
     unit: 'প্লেট',
     category: 'available',
-    image: '/images/fried_rice_crop.png',
+    image: '/images/fried_rice.jpg',
     statusBadge: 'বর্তমানে পাওয়া যাচ্ছে',
     portionNote: '[পরিমাণ নিশ্চিত করুন]',
     isOrderable: true,
