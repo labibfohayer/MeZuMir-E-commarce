@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { ProductCard } from './ProductCard';
 import { Search, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Reveal } from './ui/Reveal';
 
 interface MenuSectionProps {
   products: Product[];
@@ -57,84 +58,91 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
   return (
     <section id="menu" className="py-12 sm:py-16 bg-[#faf8f2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title & Subtitle */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 bg-brand-green-100 text-brand-green-800 text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full mb-3 border border-brand-green-200">
-            <Sparkles className="w-4 h-4 text-brand-green-700" />
-            তাজা দেশি খাবারের তালিকা
+        {/* Section Title & Subtitle with Reveal */}
+        <Reveal>
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-2 bg-brand-green-100 text-brand-green-800 text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full mb-3 border border-brand-green-200">
+              <Sparkles className="w-4 h-4 text-brand-green-700" />
+              তাজা দেশি খাবারের তালিকা
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+              আজ অর্ডার করুন
+            </h2>
+            <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
+              মিরসরাইয়ের ঘরোয়া যত্ন ও খাঁটি স্বাদের মেনু। প্রতিটি পণ্যের স্পষ্ট মূল্য, পরিমাণ ও প্রাপ্যতা নিচে দেওয়া হলো।
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-            আজ অর্ডার করুন
-          </h2>
-          <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
-            মিরসরাইয়ের ঘরোয়া যত্ন ও খাঁটি স্বাদের মেনু। প্রতিটি পণ্যের স্পষ্ট মূল্য, পরিমাণ ও প্রাপ্যতা নিচে দেওয়া হলো।
-          </p>
-        </div>
+        </Reveal>
 
-        {/* Filter Tabs & Search Bar */}
-        <div className="bg-white p-4 rounded-2xl border border-brand-green-100 shadow-md mb-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-                  selectedCategory === cat.id
-                    ? 'bg-brand-green-700 text-white shadow-sm'
-                    : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+        {/* Filter Tabs & Search Bar with Reveal */}
+        <Reveal delay={100}>
+          <div className="bg-white p-4 rounded-2xl border border-brand-green-100 shadow-md mb-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            {/* Category Tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`whitespace-nowrap px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
                     selectedCategory === cat.id
-                      ? 'bg-brand-green-900 text-brand-green-100'
-                      : 'bg-stone-200 text-stone-600'
+                      ? 'bg-brand-green-700 text-white shadow-sm'
+                      : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
                   }`}
                 >
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
+                  <span>{cat.label}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                      selectedCategory === cat.id
+                        ? 'bg-brand-green-900 text-brand-green-100'
+                        : 'bg-stone-200 text-stone-600'
+                    }`}
+                  >
+                    {cat.count}
+                  </span>
+                </button>
+              ))}
+            </div>
 
-          {/* Search box */}
-          <div className="relative w-full md:w-64">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="খাবারের নাম খুঁজুন..."
-              className="w-full pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-green-600 focus:bg-white"
-            />
+            {/* Search box */}
+            <div className="relative w-full md:w-64">
+              <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="খাবারের নাম খুঁজুন..."
+                className="w-full pl-9 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-green-600 focus:bg-white"
+              />
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Informational Guidance Alert */}
-        <div className="mb-6 p-3.5 bg-brand-green-50/80 rounded-xl border border-brand-green-200 text-xs sm:text-sm text-brand-green-900 flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-brand-green-700 shrink-0" />
-            <span>
-              <strong>স্বচ্ছতার অঙ্গীকার:</strong> যেসব পণ্যের পরিবেশনের নির্দিষ্ট পরিমাণ পাওয়া যায়নি, সেখানে <strong>“[পরিমাণ নিশ্চিত করুন]”</strong> মার্ক করা আছে।
-            </span>
+        <Reveal delay={150}>
+          <div className="mb-6 p-3.5 bg-brand-green-50/80 rounded-xl border border-brand-green-200 text-xs sm:text-sm text-brand-green-900 flex items-center justify-between flex-wrap gap-2">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-brand-green-700 shrink-0" />
+              <span>
+                <strong>স্বচ্ছতার অঙ্গীকার:</strong> যেসব পণ্যের পরিবেশনের নির্দিষ্ট পরিমাণ পাওয়া যায়নি, সেখানে <strong>“[পরিমাণ নিশ্চিত করুন]”</strong> মার্ক করা আছে।
+              </span>
+            </div>
+            <span className="text-brand-red-700 font-medium">ন্যূনতম অর্ডার ৳৩০০</span>
           </div>
-          <span className="text-brand-red-700 font-medium">ন্যূনতম অর্ডার ৳৩০০</span>
-        </div>
+        </Reveal>
 
-        {/* Products Grid */}
+        {/* Products Grid with Cascading Staggered Reveal */}
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                cartQuantity={cartItems[product.id] || 0}
-                onAddToCart={onAddToCart}
-                onUpdateQuantity={onUpdateQuantity}
-                onDirectOrder={onDirectOrder}
-              />
+            {filteredProducts.map((product, idx) => (
+              <Reveal key={product.id} delay={(idx % 4) * 80}>
+                <ProductCard
+                  product={product}
+                  cartQuantity={cartItems[product.id] || 0}
+                  onAddToCart={onAddToCart}
+                  onUpdateQuantity={onUpdateQuantity}
+                  onDirectOrder={onDirectOrder}
+                />
+              </Reveal>
             ))}
           </div>
         ) : (

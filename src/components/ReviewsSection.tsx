@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Star, CheckCircle, MapPin, MessageSquare, Sparkles, ChevronDown } from 'lucide-react';
+import { Reveal } from './ui/Reveal';
 
 export interface CustomerReview {
   id: number;
@@ -149,112 +150,116 @@ export const ReviewsSection: React.FC = () => {
   return (
     <section id="reviews" className="py-14 sm:py-20 bg-gradient-to-b from-white via-brand-green-50/30 to-[#faf8f2] border-b border-brand-green-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-1.5 bg-brand-green-100 text-brand-green-900 text-xs font-bold px-3.5 py-1.5 rounded-full border border-brand-green-200 mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-brand-green-700" />
-            <span>মিরসরাইবাসীর পছন্দের প্রমাণ</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-            গ্রাহকদের সন্তুষ্টি ও মতামত
-          </h2>
-          <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
-            মিরসরাইয়ের বিভিন্ন এলাকা থেকে যারা MeZuMir-এর খাবার গ্রহণ করেছেন, তাদের প্রত্যক্ষ অভিজ্ঞতা ও মন্তব্য।
-          </p>
+        {/* Section Header with Reveal */}
+        <Reveal>
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <div className="inline-flex items-center gap-1.5 bg-brand-green-100 text-brand-green-900 text-xs font-bold px-3.5 py-1.5 rounded-full border border-brand-green-200 mb-3">
+              <Sparkles className="w-3.5 h-3.5 text-brand-green-700" />
+              <span>মিরসরাইবাসীর পছন্দের প্রমাণ</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+              গ্রাহকদের সন্তুষ্টি ও মতামত
+            </h2>
+            <p className="mt-3 text-gray-600 text-sm sm:text-base leading-relaxed">
+              মিরসরাইয়ের বিভিন্ন এলাকা থেকে যারা MeZuMir-এর খাবার গ্রহণ করেছেন, তাদের প্রত্যক্ষ অভিজ্ঞতা ও মন্তব্য।
+            </p>
 
-          {/* Aggregate Rating Banner */}
-          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-4 bg-white px-6 py-3 rounded-2xl border border-brand-green-200 shadow-sm">
-            <div className="flex items-center gap-1.5">
-              <div className="flex text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400" />
-                ))}
+            {/* Aggregate Rating Banner */}
+            <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-4 bg-white px-6 py-3 rounded-2xl border border-brand-green-200 shadow-sm">
+              <div className="flex items-center gap-1.5">
+                <div className="flex text-amber-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-amber-400" />
+                  ))}
+                </div>
+                <span className="font-black text-lg text-gray-900 ml-1">৪.৯ / ৫.০</span>
               </div>
-              <span className="font-black text-lg text-gray-900 ml-1">৪.৯ / ৫.০</span>
-            </div>
-            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-gray-300"></span>
-            <div className="text-xs font-bold text-brand-green-800">
-              ১০০+ ভেরিফায়েড গ্রাহকের মূল্যায়ন
+              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+              <div className="text-xs font-bold text-brand-green-800">
+                ১০০+ ভেরিফায়েড গ্রাহকের মূল্যায়ন
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Filter Pills */}
-        <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs">
-          <button
-            onClick={() => {
-              setFilter('all');
-              setVisibleCount(6);
-            }}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
-              filter === 'all'
-                ? 'bg-brand-green-700 text-white shadow-sm'
-                : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
-            }`}
-          >
-            সব রিভিউ ({reviewsData.length})
-          </button>
-          <button
-            onClick={() => {
-              setFilter('মাঠা');
-              setVisibleCount(6);
-            }}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
-              filter === 'মাঠা'
-                ? 'bg-brand-green-700 text-white shadow-sm'
-                : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
-            }`}
-          >
-            দুধের মাঠা
-          </button>
-          <button
-            onClick={() => {
-              setFilter('খিচুড়ি');
-              setVisibleCount(6);
-            }}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
-              filter === 'খিচুড়ি'
-                ? 'bg-brand-green-700 text-white shadow-sm'
-                : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
-            }`}
-          >
-            খিচুড়ি ও ভর্তা
-          </button>
-          <button
-            onClick={() => {
-              setFilter('দই');
-              setVisibleCount(6);
-            }}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
-              filter === 'দই'
-                ? 'bg-brand-green-700 text-white shadow-sm'
-                : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
-            }`}
-          >
-            মিষ্টি দই
-          </button>
-          <button
-            onClick={() => {
-              setFilter('সিঙ্গারা');
-              setVisibleCount(6);
-            }}
-            className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
-              filter === 'সিঙ্গারা'
-                ? 'bg-brand-green-700 text-white shadow-sm'
-                : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
-            }`}
-          >
-            সিঙ্গারা
-          </button>
-        </div>
-
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedReviews.map((rev) => (
-            <div
-              key={rev.id}
-              className="bg-white p-6 rounded-2xl border border-brand-green-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+        {/* Filter Pills with Reveal */}
+        <Reveal delay={100}>
+          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs">
+            <button
+              onClick={() => {
+                setFilter('all');
+                setVisibleCount(6);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
+                filter === 'all'
+                  ? 'bg-brand-green-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
+              }`}
             >
+              সব রিভিউ ({reviewsData.length})
+            </button>
+            <button
+              onClick={() => {
+                setFilter('মাঠা');
+                setVisibleCount(6);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
+                filter === 'মাঠা'
+                  ? 'bg-brand-green-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              দুধের মাঠা
+            </button>
+            <button
+              onClick={() => {
+                setFilter('খিচুড়ি');
+                setVisibleCount(6);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
+                filter === 'খিচুড়ি'
+                  ? 'bg-brand-green-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              খিচুড়ি ও ভর্তা
+            </button>
+            <button
+              onClick={() => {
+                setFilter('দই');
+                setVisibleCount(6);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
+                filter === 'দই'
+                  ? 'bg-brand-green-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              মিষ্টি দই
+            </button>
+            <button
+              onClick={() => {
+                setFilter('সিঙ্গারা');
+                setVisibleCount(6);
+              }}
+              className={`px-3.5 py-1.5 rounded-xl font-bold transition ${
+                filter === 'সিঙ্গারা'
+                  ? 'bg-brand-green-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-50'
+              }`}
+            >
+              সিঙ্গারা
+            </button>
+          </div>
+        </Reveal>
+
+        {/* Reviews Grid with Staggered Cascading Reveal */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayedReviews.map((rev, idx) => (
+            <Reveal key={rev.id} delay={(idx % 3) * 90}>
+              <div
+                className="bg-white p-6 rounded-2xl border border-brand-green-100 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full"
+              >
               <div>
                 {/* Header: Avatar, Name, Location */}
                 <div className="flex items-start justify-between gap-3 mb-3">
@@ -308,6 +313,7 @@ export const ReviewsSection: React.FC = () => {
                 <span className="text-gray-400 font-normal">মিরসরাই</span>
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
 
@@ -324,28 +330,30 @@ export const ReviewsSection: React.FC = () => {
           </div>
         )}
 
-        {/* Leave a review prompt */}
-        <div className="mt-12 p-6 bg-brand-cream/60 rounded-3xl border border-brand-green-200/80 text-center max-w-2xl mx-auto space-y-2">
-          <div className="w-10 h-10 rounded-full bg-brand-green-100 text-brand-green-800 flex items-center justify-center mx-auto mb-1">
-            <MessageSquare className="w-5 h-5" />
+        {/* Leave a review prompt with Reveal */}
+        <Reveal delay={150}>
+          <div className="mt-12 p-6 bg-brand-cream/60 rounded-3xl border border-brand-green-200/80 text-center max-w-2xl mx-auto space-y-2">
+            <div className="w-10 h-10 rounded-full bg-brand-green-100 text-brand-green-800 flex items-center justify-center mx-auto mb-1">
+              <MessageSquare className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-bold text-gray-900">
+              আপনি কি MeZuMir-এর খাবার উপভোগ করেছেন?
+            </h3>
+            <p className="text-xs text-gray-600 leading-relaxed max-w-md mx-auto">
+              আপনার অভিজ্ঞতা ও মূল্যবান মতামত আমাদের আরও ভালো খাবার ও সেবা উপহার দিতে অনুপ্রাণিত করে।
+            </p>
+            <div className="pt-2">
+              <a
+                href="https://wa.me/8801854840499?text=MeZuMir%20খাবারের%20রিভিউ%20দিতে%20চাইঃ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition"
+              >
+                <span>WhatsApp-এ মতামত শেয়ার করুন</span>
+              </a>
+            </div>
           </div>
-          <h3 className="text-base font-bold text-gray-900">
-            আপনি কি MeZuMir-এর খাবার উপভোগ করেছেন?
-          </h3>
-          <p className="text-xs text-gray-600 leading-relaxed max-w-md mx-auto">
-            আপনার অভিজ্ঞতা ও মূল্যবান মতামত আমাদের আরও ভালো খাবার ও সেবা উপহার দিতে অনুপ্রাণিত করে।
-          </p>
-          <div className="pt-2">
-            <a
-              href="https://wa.me/8801854840499?text=MeZuMir%20খাবারের%20রিভিউ%20দিতে%20চাইঃ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition"
-            >
-              <span>WhatsApp-এ মতামত শেয়ার করুন</span>
-            </a>
-          </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

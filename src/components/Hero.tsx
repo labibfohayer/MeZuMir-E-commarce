@@ -2,6 +2,7 @@ import React from 'react';
 import { Utensils, MessageCircle, MapPin, Truck, ShieldCheck, Wallet } from 'lucide-react';
 import { FacebookIcon } from './icons/FacebookIcon';
 import { BRAND_INFO } from '../data/products';
+import { Reveal } from './ui/Reveal';
 
 interface HeroProps {
   onScrollToMenu: () => void;
@@ -15,53 +16,56 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu }) => {
       <div className="absolute top-1/2 left-0 -ml-20 w-80 h-80 rounded-full bg-brand-red-200/20 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Cover Banner Card */}
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-brand-green-200/60 bg-white mb-10 group">
-          <div className="w-full h-[220px] sm:h-[340px] md:h-[420px] relative">
-            <img
-              src="/images/cover.png"
-              alt="MeZuMir Banner — দেশি খাবার ও ঘরোয়া যত্ন"
-              className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-700"
-            />
-            {/* Smooth transition from dark left to vibrant food on right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent flex items-center">
-              <div className="p-5 sm:p-8 md:p-12 max-w-md lg:max-w-lg text-white">
-                <div className="inline-flex items-center gap-2 bg-brand-green-600/90 backdrop-blur-md text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full mb-3 shadow">
-                  <span className="w-2 h-2 rounded-full bg-yellow-300"></span>
-                  Fresh • Local • Homemade
-                </div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-white drop-shadow-md">
-                  {BRAND_INFO.headline}
-                </h1>
-                <p className="mt-2 text-xs sm:text-base md:text-lg font-medium text-emerald-100 drop-shadow">
-                  {BRAND_INFO.subheadline}
-                </p>
+        {/* Cover Banner Card with Smooth Reveal */}
+        <Reveal direction="scale" duration={800}>
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-brand-green-200/60 bg-white mb-10 group">
+            <div className="w-full h-[220px] sm:h-[340px] md:h-[420px] relative">
+              <img
+                src="/images/cover.png"
+                alt="MeZuMir Banner — দেশি খাবার ও ঘরোয়া যত্ন"
+                className="w-full h-full object-cover object-center group-hover:scale-[1.01] transition-transform duration-700"
+              />
+              {/* Smooth transition from dark left to vibrant food on right */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent flex items-center">
+                <div className="p-5 sm:p-8 md:p-12 max-w-md lg:max-w-lg text-white">
+                  <div className="inline-flex items-center gap-2 bg-brand-green-600/90 backdrop-blur-md text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full mb-3 shadow">
+                    <span className="w-2 h-2 rounded-full bg-yellow-300"></span>
+                    Fresh • Local • Homemade
+                  </div>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight text-white drop-shadow-md">
+                    {BRAND_INFO.headline}
+                  </h1>
+                  <p className="mt-2 text-xs sm:text-base md:text-lg font-medium text-emerald-100 drop-shadow">
+                    {BRAND_INFO.subheadline}
+                  </p>
 
-                <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
-                  <button
-                    onClick={onScrollToMenu}
-                    className="inline-flex items-center gap-2 bg-brand-green-600 hover:bg-brand-green-500 text-white text-xs sm:text-sm md:text-base font-bold px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95"
-                  >
-                    <Utensils className="w-4 h-4" />
-                    আজকের মেনু দেখুন
-                  </button>
-                  <a
-                    href={BRAND_INFO.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-brand-green-950 text-xs sm:text-sm md:text-base font-bold px-3.5 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl shadow hover:shadow-lg transition"
-                  >
-                    <MessageCircle className="w-4 h-4 text-emerald-600" />
-                    WhatsApp-এ অর্ডার
-                  </a>
+                  <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
+                    <button
+                      onClick={onScrollToMenu}
+                      className="inline-flex items-center gap-2 bg-brand-green-600 hover:bg-brand-green-500 text-white text-xs sm:text-sm md:text-base font-bold px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95"
+                    >
+                      <Utensils className="w-4 h-4" />
+                      আজকের মেনু দেখুন
+                    </button>
+                    <a
+                      href={BRAND_INFO.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-brand-green-950 text-xs sm:text-sm md:text-base font-bold px-3.5 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl shadow hover:shadow-lg transition"
+                    >
+                      <MessageCircle className="w-4 h-4 text-emerald-600" />
+                      WhatsApp-এ অর্ডার
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        {/* Detailed Brand Context & Info Section */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-brand-green-100 shadow-xl mb-10">
+        {/* Detailed Brand Context & Info Section with Smooth Slide Up */}
+        <Reveal delay={150}>
+          <div className="bg-white rounded-3xl p-6 sm:p-10 border border-brand-green-100 shadow-xl mb-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Brand Bio & Action Buttons */}
             <div className="lg:col-span-7 space-y-4">
@@ -185,6 +189,7 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu }) => {
             </div>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );
