@@ -79,6 +79,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a href="#trust" className="hover:text-brand-green-700 transition">
               বিশ্বাসযোগ্যতা
             </a>
+            <a href="#reviews" className="hover:text-brand-green-700 transition">
+              গ্রাহকের রিভিউ
+            </a>
             <a href="#faq" className="hover:text-brand-green-700 transition">
               প্রশ্নোত্তর
             </a>

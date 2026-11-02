@@ -7,6 +7,7 @@ import { MenuSection } from './components/MenuSection';
 import { OrderSteps } from './components/OrderSteps';
 import { DeliveryPaymentSection } from './components/DeliveryPaymentSection';
 import { TrustSection } from './components/TrustSection';
+import { ReviewsSection } from './components/ReviewsSection';
 import { FaqSection } from './components/FaqSection';
 import { CtaSection } from './components/CtaSection';
 import { Footer } from './components/Footer';
@@ -183,6 +184,9 @@ export const App: React.FC = () => {
 
         {/* Trust & Credibility Section */}
         <TrustSection />
+
+        {/* Customer Reviews Section */}
+        <ReviewsSection />
 
         {/* Frequently Asked Questions */}
         <FaqSection />

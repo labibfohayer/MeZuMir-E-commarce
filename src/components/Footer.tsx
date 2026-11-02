@@ -63,6 +63,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenChecklist, onNavigateAdmin
                 </a>
               </li>
               <li>
+                <a href="#reviews" className="hover:text-emerald-400 transition">
+                  গ্রাহকের রিভিউ ও মতামত
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="hover:text-emerald-400 transition">
                   সচরাচর জিজ্ঞাসা (FAQ)
                 </a>
