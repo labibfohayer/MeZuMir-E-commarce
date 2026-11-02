@@ -172,7 +172,7 @@ export const productsData: Product[] = [
     price: 50,
     unit: '২৫০ মি.লি.',
     category: 'seasonal',
-    image: '/images/juice_crop.png',
+    image: '/images/fruit_juice.jpg',
     statusBadge: 'মৌসুমি / বিশেষ দিনে',
     isOrderable: true,
     seasonalNote: 'তাজা ফলের প্রাপ্তি অনুযায়ী বোতলজাত জুস সরবরাহ করা হয়।'
