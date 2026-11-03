@@ -184,7 +184,7 @@ export const ReviewsSection: React.FC = () => {
 
         {/* Filter Pills with Reveal */}
         <Reveal delay={100}>
-          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs">
+          <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none text-xs -mx-4 px-4 sm:mx-0 sm:px-0">
             <button
               onClick={() => {
                 setFilter('all');

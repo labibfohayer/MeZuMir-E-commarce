@@ -110,10 +110,10 @@ export const OrderSteps: React.FC = () => {
 
         {/* Sample WhatsApp Template Box */}
         <Reveal delay={250}>
-          <div className="mt-10 bg-brand-green-950 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-brand-green-800">
+          <div className="mt-8 sm:mt-10 bg-brand-green-950 text-white rounded-2xl p-4 sm:p-8 shadow-xl">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 mb-4 pb-4 border-b border-brand-green-800">
             <div>
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-emerald-400" />
                 WhatsApp বার্তার নমুনা
               </h3>
@@ -123,7 +123,7 @@ export const OrderSteps: React.FC = () => {
             </div>
             <button
               onClick={handleCopy}
-              className="inline-flex items-center gap-1.5 bg-brand-green-800 hover:bg-brand-green-700 text-brand-green-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition active:scale-95 border border-brand-green-700"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-brand-green-800 hover:bg-brand-green-700 text-brand-green-100 px-4 py-2.5 sm:py-1.5 rounded-xl sm:rounded-lg text-xs font-semibold transition active:scale-95 border border-brand-green-700"
             >
               {copied ? (
                 <>
@@ -139,7 +139,7 @@ export const OrderSteps: React.FC = () => {
             </button>
           </div>
 
-          <pre className="font-sans text-xs sm:text-sm text-emerald-100 whitespace-pre-wrap leading-relaxed bg-brand-green-900/60 p-4 rounded-xl border border-brand-green-800/80">
+          <pre className="font-sans text-xs sm:text-sm text-emerald-100 whitespace-pre-wrap leading-relaxed bg-brand-green-900/60 p-3.5 sm:p-4 rounded-xl border border-brand-green-800/80">
             {sampleMessage}
           </pre>
         </div>

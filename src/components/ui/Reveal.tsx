@@ -22,6 +22,14 @@ export const Reveal: React.FC<RevealProps> = ({
     const el = domRef.current;
     if (!el) return;
 
+    // Immediately reveal if element is already within or near visible viewport
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1000;
+    const rect = el.getBoundingClientRect();
+    if (rect.top <= viewportHeight * 1.2) {
+      setIsRevealed(true);
+      return;
+    }
+
     if (!('IntersectionObserver' in window)) {
       setIsRevealed(true);
       return;
@@ -37,17 +45,23 @@ export const Reveal: React.FC<RevealProps> = ({
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: '0px 0px -30px 0px',
+        threshold: 0.01,
+        rootMargin: '120px 0px 120px 0px',
       }
     );
 
     observer.observe(el);
 
+    // Fallback safety: reveal after a short window so content is never stuck hidden
+    const safetyTimer = setTimeout(() => {
+      setIsRevealed(true);
+    }, 600 + delay);
+
     return () => {
       observer.disconnect();
+      clearTimeout(safetyTimer);
     };
-  }, []);
+  }, [delay]);
 
   const getTransformStyle = () => {
     if (isRevealed) {

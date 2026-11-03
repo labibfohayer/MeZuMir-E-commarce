@@ -54,9 +54,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
 
         {/* Category / Status badge */}
-        <div className="absolute top-2.5 left-2.5">
+        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5">
           <span
-            className={`text-[11px] font-bold px-2.5 py-1 rounded-full border shadow-sm backdrop-blur-md ${getBadgeClass(
+            className={`text-[10px] sm:text-[11px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border shadow-sm backdrop-blur-md ${getBadgeClass(
               product.category
             )}`}
           >
@@ -65,29 +65,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Price Tag in Image */}
-        <div className="absolute bottom-2.5 right-2.5 bg-brand-green-900/90 backdrop-blur-md text-white font-black text-sm px-3 py-1 rounded-xl shadow-md border border-white/20">
+        <div className="absolute bottom-2 right-2 sm:bottom-2.5 sm:right-2.5 bg-brand-green-900/90 backdrop-blur-md text-white font-black text-xs sm:text-sm px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-xl shadow-md border border-white/20">
           ৳{product.price}
         </div>
       </div>
 
       {/* Product Details Content */}
-      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="text-lg font-bold text-gray-900 group-hover:text-brand-green-700 transition">
+          <div className="flex items-start justify-between gap-1.5 sm:gap-2">
+            <h3 className="text-sm sm:text-lg font-bold text-gray-900 group-hover:text-brand-green-700 transition leading-snug">
               {product.bengaliName}
             </h3>
           </div>
 
           {/* Unit / Portion */}
-          <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-gray-600">
-            <span className="bg-stone-100 text-stone-700 px-2 py-0.5 rounded font-medium">
+          <div className="mt-1 flex flex-wrap items-center gap-1 text-[11px] sm:text-xs text-gray-600">
+            <span className="bg-stone-100 text-stone-700 px-1.5 sm:px-2 py-0.5 rounded font-medium">
               একক: {product.unit}
             </span>
 
             {/* If portion note is required (e.g. [পরিমাণ নিশ্চিত করুন]) */}
             {product.portionNote && (
-              <span className="bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded text-[11px] font-semibold">
+              <span className="bg-amber-50 text-amber-800 border border-amber-200 px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-semibold">
                 {product.portionNote}
               </span>
             )}
@@ -132,50 +132,50 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-4 pt-3 border-t border-gray-100">
+        <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-gray-100">
           {product.isOrderable ? (
             <div className="space-y-2">
               {cartQuantity === 0 ? (
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                   <button
                     onClick={() => onAddToCart(product)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-brand-green-800 border border-brand-green-300 font-bold py-2 px-2.5 rounded-xl text-xs sm:text-sm transition active:scale-95"
+                    className="w-full inline-flex items-center justify-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-brand-green-800 border border-brand-green-300 font-bold py-2 sm:py-2 px-1.5 sm:px-2.5 rounded-xl text-xs sm:text-sm transition active:scale-95"
                   >
-                    <Plus className="w-3.5 h-3.5" />
-                    কার্টে যোগ
+                    <Plus className="w-3.5 h-3.5 shrink-0" />
+                    <span>কার্টে যোগ</span>
                   </button>
                   <button
                     onClick={() => onDirectOrder(product)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold py-2 px-2.5 rounded-xl text-xs sm:text-sm shadow-sm transition active:scale-95"
+                    className="w-full inline-flex items-center justify-center gap-1 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold py-2 sm:py-2 px-1.5 sm:px-2.5 rounded-xl text-xs sm:text-sm shadow-sm transition active:scale-95"
                   >
-                    <ShoppingBag className="w-3.5 h-3.5" />
-                    অর্ডার করুন
+                    <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+                    <span>অর্ডার করুন</span>
                   </button>
                 </div>
               ) : (
-                <div className="space-y-2">
+                <div className="space-y-1.5 sm:space-y-2">
                   <div className="flex items-center justify-between bg-brand-green-50 rounded-xl p-1 border border-brand-green-200">
                     <button
                       onClick={() => onUpdateQuantity(product, -1)}
-                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-white text-brand-green-800 shadow-sm hover:bg-gray-100 active:scale-95 transition"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-white text-brand-green-800 shadow-sm hover:bg-gray-100 active:scale-95 transition"
                       aria-label="কমান"
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
-                    <span className="text-sm font-bold text-brand-green-900">
+                    <span className="text-xs sm:text-sm font-bold text-brand-green-900">
                       {cartQuantity} টি যোগ হয়েছে
                     </span>
                     <button
                       onClick={() => onUpdateQuantity(product, 1)}
-                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-brand-green-700 text-white shadow-sm hover:bg-brand-green-800 active:scale-95 transition"
+                      className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg bg-brand-green-700 text-white shadow-sm hover:bg-brand-green-800 active:scale-95 transition"
                       aria-label="বাড়ান"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
                   </div>
                   <button
                     onClick={() => onDirectOrder(product)}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-brand-green-800 hover:bg-brand-green-900 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition"
+                    className="w-full inline-flex items-center justify-center gap-1.5 bg-brand-green-800 hover:bg-brand-green-900 text-white font-bold py-2 sm:py-1.5 px-3 rounded-xl sm:rounded-lg text-xs transition"
                   >
                     এখনই অর্ডার নিশ্চিত করুন
                   </button>

@@ -49,10 +49,10 @@ export const FloatingMobileBar: React.FC<FloatingMobileBarProps> = ({
             </button>
           </div>
         ) : (
-          <div className="flex-1 flex items-center justify-between px-1">
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              <span className="text-xs font-semibold text-emerald-200">
+          <div className="flex-1 flex items-center justify-between px-1 gap-2">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+              <span className="text-[11px] sm:text-xs font-semibold text-emerald-200 truncate">
                 মিরসরাইয়ে ২৪ ঘণ্টা অর্ডার চলছে
               </span>
             </div>
@@ -60,7 +60,7 @@ export const FloatingMobileBar: React.FC<FloatingMobileBarProps> = ({
               href={BRAND_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 shadow shrink-0 active:scale-95 transition"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp অর্ডার</span>

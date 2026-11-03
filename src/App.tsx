@@ -161,7 +161,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Page Sections */}
-      <main className="flex-1">
+      <main className="flex-1 pb-16 md:pb-0">
         {/* Hero Section */}
         <Hero
           onScrollToMenu={scrollToMenu}

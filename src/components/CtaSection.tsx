@@ -31,13 +31,13 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onScrollToMenu }) => {
           </p>
 
           {/* Buttons as commanded */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
             {/* বোতাম ১: WhatsApp-এ অর্ডার করুন */}
             <a
               href={BRAND_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-brand-green-950 font-black text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-xl hover:shadow-2xl transition transform active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-brand-green-950 font-black text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-xl hover:shadow-2xl transition transform active:scale-95"
             >
               <MessageCircle className="w-5 h-5 text-brand-green-950 fill-brand-green-950" />
               <span>WhatsApp-এ অর্ডার করুন</span>
@@ -48,7 +48,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onScrollToMenu }) => {
               href={BRAND_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl border border-white/20 transition backdrop-blur-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl border border-white/20 transition backdrop-blur-sm"
             >
               <FacebookIcon className="w-5 h-5" />
               <span>Facebook Page-এ যান</span>
@@ -57,7 +57,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onScrollToMenu }) => {
             {/* Additional Menu scroll shortcut */}
             <button
               onClick={onScrollToMenu}
-              className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm text-emerald-200 hover:text-white px-4 py-2 transition"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs sm:text-sm text-emerald-200 hover:text-white px-4 py-2 transition pt-2 sm:pt-0"
             >
               <Utensils className="w-4 h-4" />
               <span>পুনরায় মেনু দেখতে স্ক্রল করুন</span>

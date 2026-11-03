@@ -19,9 +19,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-green-100 shadow-sm transition-all">
       {/* Top Banner Notice */}
-      <div className="bg-brand-green-800 text-white text-xs sm:text-sm py-1.5 px-4 font-medium">
+      <div className="bg-brand-green-800 text-white text-xs sm:text-sm py-1.5 px-3 sm:px-4 font-medium overflow-hidden">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2 truncate">
+          {/* Mobile Ticker (No text cut off, seamless smooth scroll) */}
+          <div className="sm:hidden w-full overflow-hidden whitespace-nowrap flex items-center">
+            <span className="inline-block w-2 h-2 rounded-full bg-brand-red-500 animate-ping shrink-0 mr-2"></span>
+            <div className="animate-mobile-ticker">
+              <span className="mr-8">
+                মিরসরাইয়ে খাবার সেবা • ২৪ ঘণ্টা অর্ডার গ্রহণ • ফ্রি ডেলিভারি প্রযোজ্য এলাকায় • ন্যূনতম অর্ডার {BRAND_INFO.minOrderText} • bKash: {BRAND_INFO.bkashNumber}
+              </span>
+              <span className="mr-8">
+                মিরসরাইয়ে খাবার সেবা • ২৪ ঘণ্টা অর্ডার গ্রহণ • ফ্রি ডেলিভারি প্রযোজ্য এলাকায় • ন্যূনতম অর্ডার {BRAND_INFO.minOrderText} • bKash: {BRAND_INFO.bkashNumber}
+              </span>
+            </div>
+          </div>
+
+          {/* Desktop Static Notice */}
+          <div className="hidden sm:flex items-center space-x-2 truncate">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-red-500 animate-ping"></span>
             <span className="truncate">
               মিরসরাইয়ে খাবার সেবা • ২৪ ঘণ্টা অর্ডার গ্রহণ • ফ্রি ডেলিভারি প্রযোজ্য এলাকায়
@@ -43,11 +57,11 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo & Brand Name */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-brand-green-600 p-0.5 bg-white shadow-md group-hover:scale-105 transition-transform">
+          <a href="#" className="flex items-center gap-2 sm:gap-3 group">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-brand-green-600 p-0.5 bg-white shadow-md group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/images/logo.png"
                 alt="MeZuMir Logo"
@@ -55,11 +69,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               />
             </div>
             <div>
-              <div className="flex items-center font-black tracking-tight text-2xl sm:text-3xl leading-none">
+              <div className="flex items-center font-black tracking-tight text-xl sm:text-3xl leading-none">
                 <span className="text-brand-green-800">MeZu</span>
                 <span className="text-brand-red-600 ml-0.5">Mir</span>
               </div>
-              <p className="text-xs text-gray-500 mt-1 font-medium hidden sm:block">
+              <p className="text-[10px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1 font-medium hidden xs:block sm:block">
                 মিরসরাইয়ের চেনা স্বাদ, সহজ অনলাইন অর্ডারে
               </p>
             </div>
@@ -88,13 +102,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Quick Actions & Cart */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             {/* Facebook button */}
             <a
               href={BRAND_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:px-3 sm:py-2 text-xs font-semibold rounded-lg border border-blue-200 text-blue-700 bg-blue-50/60 hover:bg-blue-100 flex items-center gap-1.5 transition"
+              className="p-2 sm:px-3 sm:py-2 text-xs font-semibold rounded-lg border border-blue-200 text-blue-700 bg-blue-50/60 hover:bg-blue-100 flex items-center gap-1.5 transition shrink-0"
               title="Facebook Page"
             >
               <FacebookIcon className="w-4 h-4" />
@@ -106,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href={BRAND_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:px-3.5 sm:py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm transition"
+              className="p-2 sm:px-3.5 sm:py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm transition shrink-0"
               title="WhatsApp Message"
             >
               <MessageCircle className="w-4 h-4" />
@@ -116,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Cart Trigger */}
             <button
               onClick={onOpenCart}
-              className="relative flex items-center gap-2 bg-brand-green-700 hover:bg-brand-green-800 text-white px-3 sm:px-4 py-2 rounded-xl font-bold shadow-md hover:shadow-lg transition active:scale-95"
+              className="relative flex items-center gap-1.5 sm:gap-2 bg-brand-green-700 hover:bg-brand-green-800 text-white px-2.5 sm:px-4 py-2 rounded-xl font-bold shadow-md hover:shadow-lg transition active:scale-95 shrink-0"
               aria-label="শপিং কার্ট"
             >
               <div className="relative">
