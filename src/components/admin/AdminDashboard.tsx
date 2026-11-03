@@ -21,7 +21,7 @@ import {
   RotateCcw
 } from 'lucide-react';
 import { Product, RecordedOrder, OrderStatus, ProductCategory } from '../../types';
-import { productsData as defaultProductsData, BRAND_INFO as defaultBrandInfo } from '../../data/products';
+import { productsData as defaultProductsData, BRAND_INFO as defaultBrandInfo, PRODUCTS_DATA_VERSION } from '../../data/products';
 
 interface AdminDashboardProps {
   onNavigateHome: () => void;
@@ -41,6 +41,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
   // Products state (stored in localStorage with fallback to defaultProductsData)
   const [products, setProducts] = useState<Product[]>(() => {
     try {
+      const storedVersion = localStorage.getItem('mezumir_products_version');
+      if (storedVersion !== PRODUCTS_DATA_VERSION) {
+        localStorage.setItem('mezumir_products_version', PRODUCTS_DATA_VERSION);
+        localStorage.setItem('mezumir_products', JSON.stringify(defaultProductsData));
+        return defaultProductsData;
+      }
       const saved = localStorage.getItem('mezumir_products');
       return saved ? JSON.parse(saved) : defaultProductsData;
     } catch {

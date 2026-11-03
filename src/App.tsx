@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { productsData } from './data/products';
+import { productsData, PRODUCTS_DATA_VERSION } from './data/products';
 import { Product, CartItem } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -48,9 +48,15 @@ export const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Products state (loads from localStorage if updated by Admin, fallback to productsData)
+  // Products state (loads from localStorage if updated by Admin, auto-syncs with latest code version)
   const [products, setProducts] = useState<Product[]>(() => {
     try {
+      const storedVersion = localStorage.getItem('mezumir_products_version');
+      if (storedVersion !== PRODUCTS_DATA_VERSION) {
+        localStorage.setItem('mezumir_products_version', PRODUCTS_DATA_VERSION);
+        localStorage.setItem('mezumir_products', JSON.stringify(productsData));
+        return productsData;
+      }
       const saved = localStorage.getItem('mezumir_products');
       return saved ? JSON.parse(saved) : productsData;
     } catch {
