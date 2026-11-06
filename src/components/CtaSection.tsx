@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle, Utensils, Heart } from 'lucide-react';
 import { FacebookIcon } from './icons/FacebookIcon';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 import { Reveal } from './ui/Reveal';
 
 interface CtaSectionProps {
@@ -35,9 +35,17 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onScrollToMenu }) => {
             {/* বোতাম ১: WhatsApp-এ অর্ডার করুন */}
             <a
               href={BRAND_INFO.whatsappUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-brand-green-950 font-black text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-xl hover:shadow-2xl transition transform active:scale-95"
+              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-500 text-brand-green-950 font-black text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-xl transition ${
+                !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-emerald-400 hover:shadow-2xl active:scale-95'
+              }`}
             >
               <MessageCircle className="w-5 h-5 text-brand-green-950 fill-brand-green-950" />
               <span>WhatsApp-এ অর্ডার করুন</span>
@@ -46,9 +54,17 @@ export const CtaSection: React.FC<CtaSectionProps> = ({ onScrollToMenu }) => {
             {/* বোতাম ২: Facebook Page-এ যান */}
             <a
               href={BRAND_INFO.facebookUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('ফেসবুক পেজ লিংক সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl border border-white/20 transition backdrop-blur-sm"
+              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/10 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl border border-white/20 transition backdrop-blur-sm ${
+                !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-white/20'
+              }`}
             >
               <FacebookIcon className="w-5 h-5" />
               <span>Facebook Page-এ যান</span>

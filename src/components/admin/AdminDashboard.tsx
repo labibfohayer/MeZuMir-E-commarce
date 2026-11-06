@@ -174,7 +174,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
     const sample: RecordedOrder = {
       id: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
       customerName: 'মো. তৌহিদুল ইসলাম',
-      phone: '01854840499',
+      phone: '01XXXXXXXXX',
       areaAddress: 'মিরসরাই পৌরসভা, থানা রোড',
       paymentMethod: 'bKash',
       specialNotes: 'মাঠা ঠান্ডা হতে হবে এবং সাথে এক্সট্রা কাঁচামরিচ দিবেন।',
@@ -859,9 +859,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
                 <strong className="text-xs text-gray-900 block">৪. শীতকালীন পণ্যের বর্তমান প্রাপ্যতা:</strong>
                 <p className="text-xs text-gray-600 mt-0.5">শীতের পিঠা ও খেজুরের রস "মৌসুমে পাওয়া যাবে" হিসেবে অর্ডার বন্ধ রাখা হয়েছে।</p>
               </div>
-              <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-950">
-                <strong className="text-xs block">৫. bKash নম্বর ও পেমেন্ট পদ্ধতি:</strong>
-                <p className="text-xs mt-0.5">bKash নম্বর 01854840499 সম্পূর্ণ সক্রিয় ও ভেরিফায়েড।</p>
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                <strong className="text-xs text-gray-900 block">৫. bKash নম্বর ও পেমেন্ট পদ্ধতি:</strong>
+                <p className="text-xs text-gray-600 mt-0.5">পেমেন্ট ও অর্ডার গেটওয়ে সেবা সাময়িকভাবে স্থগিত রাখা হয়েছে।</p>
               </div>
               <div className="p-3 bg-stone-50 rounded-xl border border-stone-200">
                 <strong className="text-xs text-gray-900 block">৬. ২৪ ঘণ্টা অর্ডার গ্রহণ ও ডেলিভারি সময়:</strong>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShoppingBag, MessageCircle, Sparkles } from 'lucide-react';
 import { FacebookIcon } from './icons/FacebookIcon';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 
 interface NavbarProps {
   cartCount: number;
@@ -106,10 +106,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Facebook button */}
             <a
               href={BRAND_INFO.facebookUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('ফেসবুক পেজ লিংক সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:px-3 sm:py-2 text-xs font-semibold rounded-lg border border-blue-200 text-blue-700 bg-blue-50/60 hover:bg-blue-100 flex items-center gap-1.5 transition shrink-0"
-              title="Facebook Page"
+              className={`p-2 sm:px-3 sm:py-2 text-xs font-semibold rounded-lg border border-blue-200 text-blue-700 bg-blue-50/60 flex items-center gap-1.5 transition shrink-0 ${
+                !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-blue-100'
+              }`}
+              title={IS_CONTACT_ACTIVE ? "Facebook Page" : "সাময়িকভাবে স্থগিত"}
             >
               <FacebookIcon className="w-4 h-4" />
               <span className="hidden sm:inline">ফেসবুক পেজ</span>
@@ -118,10 +126,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* WhatsApp direct button */}
             <a
               href={BRAND_INFO.whatsappUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 sm:px-3.5 sm:py-2 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white flex items-center gap-1.5 shadow-sm transition shrink-0"
-              title="WhatsApp Message"
+              className={`p-2 sm:px-3.5 sm:py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white flex items-center gap-1.5 shadow-sm transition shrink-0 ${
+                !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-emerald-700'
+              }`}
+              title={IS_CONTACT_ACTIVE ? "WhatsApp Message" : "সাময়িকভাবে স্থগিত"}
             >
               <MessageCircle className="w-4 h-4" />
               <span className="hidden sm:inline">WhatsApp অর্ডার</span>

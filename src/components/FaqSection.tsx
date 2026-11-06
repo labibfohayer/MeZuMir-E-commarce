@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, MessageCircle } from 'lucide-react';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 import { Reveal } from './ui/Reveal';
 
 export const FaqSection: React.FC = () => {
@@ -98,9 +98,17 @@ export const FaqSection: React.FC = () => {
           </p>
           <a
             href={BRAND_INFO.whatsappUrl}
+            onClick={(e) => {
+              if (!IS_CONTACT_ACTIVE) {
+                e.preventDefault();
+                alert('WhatsApp সাপোর্ট সেবা সাময়িকভাবে বন্ধ আছে।');
+              }
+            }}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm shadow transition"
+            className={`mt-3 inline-flex items-center gap-2 bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm shadow transition ${
+              !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-emerald-700'
+            }`}
           >
             <MessageCircle className="w-4 h-4" />
             <span>WhatsApp-এ সরাসরি কথা বলুন</span>

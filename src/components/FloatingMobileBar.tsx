@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShoppingBag, MessageCircle, ArrowRight } from 'lucide-react';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 
 interface FloatingMobileBarProps {
   cartCount: number;
@@ -58,9 +58,17 @@ export const FloatingMobileBar: React.FC<FloatingMobileBarProps> = ({
             </div>
             <a
               href={BRAND_INFO.whatsappUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 shadow shrink-0 active:scale-95 transition"
+              className={`bg-emerald-600 text-white font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 shadow shrink-0 transition ${
+                !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-emerald-500 active:scale-95'
+              }`}
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp অর্ডার</span>

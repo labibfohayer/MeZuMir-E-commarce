@@ -1,7 +1,7 @@
 import React from 'react';
 import { Utensils, MessageCircle, MapPin, Truck, ShieldCheck, Wallet } from 'lucide-react';
 import { FacebookIcon } from './icons/FacebookIcon';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 import { Reveal } from './ui/Reveal';
 
 interface HeroProps {
@@ -49,9 +49,17 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu }) => {
                     </button>
                     <a
                       href={BRAND_INFO.whatsappUrl}
+                      onClick={(e) => {
+                        if (!IS_CONTACT_ACTIVE) {
+                          e.preventDefault();
+                          alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                        }
+                      }}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/95 hover:bg-white text-brand-green-950 text-xs sm:text-sm md:text-base font-bold px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl shadow hover:shadow-lg transition"
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 bg-white/95 text-brand-green-950 text-xs sm:text-sm md:text-base font-bold px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 md:py-3 rounded-xl shadow transition ${
+                        !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-white hover:shadow-lg'
+                      }`}
                     >
                       <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
                       WhatsApp-এ অর্ডার
@@ -96,9 +104,17 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu }) => {
                 {/* 2. দ্বিতীয় বোতাম */}
                 <a
                   href={BRAND_INFO.whatsappUrl}
+                  onClick={(e) => {
+                    if (!IS_CONTACT_ACTIVE) {
+                      e.preventDefault();
+                      alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                    }
+                  }}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3.5 rounded-xl shadow-md hover:shadow-lg transition active:scale-95 text-sm sm:text-base"
+                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold px-5 py-3.5 rounded-xl shadow-md transition text-sm sm:text-base ${
+                    !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-emerald-700 hover:shadow-lg active:scale-95'
+                  }`}
                 >
                   <MessageCircle className="w-5 h-5" />
                   <span>WhatsApp-এ অর্ডার করুন</span>
@@ -107,9 +123,17 @@ export const Hero: React.FC<HeroProps> = ({ onScrollToMenu }) => {
                 {/* 3. Facebook বোতাম */}
                 <a
                   href={BRAND_INFO.facebookUrl}
+                  onClick={(e) => {
+                    if (!IS_CONTACT_ACTIVE) {
+                      e.preventDefault();
+                      alert('ফেসবুক পেজ লিংক সাময়িকভাবে বন্ধ আছে।');
+                    }
+                  }}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-5 py-3.5 rounded-xl border border-blue-200 transition text-sm sm:text-base"
+                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-50 text-blue-700 font-bold px-5 py-3.5 rounded-xl border border-blue-200 transition text-sm sm:text-base ${
+                    !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-blue-100'
+                  }`}
                 >
                   <FacebookIcon className="w-5 h-5" />
                   <span>Facebook Page-এ যান</span>

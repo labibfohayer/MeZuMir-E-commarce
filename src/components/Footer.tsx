@@ -1,7 +1,7 @@
 import React from 'react';
 import { Phone, MessageCircle, MapPin, Wallet, Clock } from 'lucide-react';
 import { FacebookIcon } from './icons/FacebookIcon';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 
 interface FooterProps {
   onOpenChecklist: () => void;
@@ -142,18 +142,34 @@ export const Footer: React.FC<FooterProps> = ({ onOpenChecklist, onNavigateAdmin
           <div className="flex items-center gap-4">
             <a
               href={BRAND_INFO.facebookUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('ফেসবুক পেজ লিংক সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-stone-400 hover:text-blue-400 transition flex items-center gap-1"
+              className={`text-stone-400 transition flex items-center gap-1 ${
+                !IS_CONTACT_ACTIVE ? 'opacity-50 cursor-not-allowed' : 'hover:text-blue-400'
+              }`}
             >
               <FacebookIcon className="w-3.5 h-3.5" />
               <span>Facebook Page</span>
             </a>
             <a
               href={BRAND_INFO.whatsappUrl}
+              onClick={(e) => {
+                if (!IS_CONTACT_ACTIVE) {
+                  e.preventDefault();
+                  alert('WhatsApp অর্ডার সেবা সাময়িকভাবে বন্ধ আছে।');
+                }
+              }}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-stone-400 hover:text-emerald-400 transition flex items-center gap-1"
+              className={`text-stone-400 transition flex items-center gap-1 ${
+                !IS_CONTACT_ACTIVE ? 'opacity-50 cursor-not-allowed' : 'hover:text-emerald-400'
+              }`}
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp Chat</span>

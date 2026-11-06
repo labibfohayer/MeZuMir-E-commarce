@@ -13,7 +13,7 @@ import {
   FileText
 } from 'lucide-react';
 import { CartItem, OrderFormData, RecordedOrder } from '../types';
-import { BRAND_INFO } from '../data/products';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -62,7 +62,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     if (!formData.phone.trim()) {
       errors.phone = 'অনুগ্রহ করে আপনার মোবাইল নম্বর লিখুন';
     } else if (!/^01[3-9]\d{8}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
-      errors.phone = 'সঠিক ১১ ডিজিটের মোবাইল নম্বর দিন (যেমন: 01854840499)';
+      errors.phone = 'সঠিক ১১ ডিজিটের মোবাইল নম্বর দিন (যেমন: 01700000000)';
     }
     if (!formData.areaAddress.trim()) {
       errors.areaAddress = 'মিরসরাইয়ের এলাকা বা সম্পূর্ণ ঠিকানা লিখুন';
@@ -73,6 +73,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
   const handleOrderSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!IS_CONTACT_ACTIVE) {
+      alert('অনলাইন অর্ডার গ্রহণ সেবাটি সাময়িকভাবে স্থগিত রয়েছে। বিস্তারিত জানতে পরবর্তীতে ভিজিট করুন।');
+      return;
+    }
     if (items.length === 0) return;
 
     if (!validateForm()) return;
@@ -106,7 +110,7 @@ ${itemsList}
 অর্ডারের প্রাপ্যতা ও সম্ভাব্য ডেলিভারি সময় জানাবেন।`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/8801854840499?text=${encodedMessage}`;
+    const whatsappUrl = IS_CONTACT_ACTIVE ? `https://wa.me/8801854840499?text=${encodedMessage}` : '#';
 
     // Record order in local storage for Admin Panel
     try {
@@ -345,7 +349,7 @@ ${itemsList}
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        placeholder="যেমন: 01854840499"
+                        placeholder="যেমন: 01700000000"
                         className={`w-full pl-9 pr-3 py-2 bg-stone-50 border rounded-xl text-sm focus:outline-none focus:ring-2 ${
                           formErrors.phone
                             ? 'border-red-400 focus:ring-red-400'
@@ -481,15 +485,15 @@ ${itemsList}
                   <div className="pt-2">
                     <button
                       type="submit"
-                      disabled={!isMinOrderMet}
+                      disabled={!isMinOrderMet || !IS_CONTACT_ACTIVE}
                       className={`w-full py-3.5 px-4 rounded-xl font-black text-sm flex items-center justify-center gap-2 shadow-lg transition active:scale-95 ${
-                        isMinOrderMet
+                        isMinOrderMet && IS_CONTACT_ACTIVE
                           ? 'bg-brand-green-700 hover:bg-brand-green-800 text-white cursor-pointer'
                           : 'bg-stone-300 text-stone-500 cursor-not-allowed'
                       }`}
                     >
                       <Send className="w-4 h-4" />
-                      <span>অর্ডার নিশ্চিত করতে পাঠান</span>
+                      <span>{IS_CONTACT_ACTIVE ? 'অর্ডার নিশ্চিত করতে পাঠান' : 'অর্ডার সেবা সাময়িক স্থগিত'}</span>
                     </button>
 
                     {/* Exact text mandated by user prompt under the button */}

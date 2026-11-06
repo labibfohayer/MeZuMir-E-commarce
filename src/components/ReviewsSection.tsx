@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Star, CheckCircle, MapPin, MessageSquare, Sparkles, ChevronDown } from 'lucide-react';
 import { Reveal } from './ui/Reveal';
+import { BRAND_INFO, IS_CONTACT_ACTIVE } from '../data/products';
 
 export interface CustomerReview {
   id: number;
@@ -344,10 +345,18 @@ export const ReviewsSection: React.FC = () => {
             </p>
             <div className="pt-2">
               <a
-                href="https://wa.me/8801854840499?text=MeZuMir%20খাবারের%20রিভিউ%20দিতে%20চাইঃ"
+                href={BRAND_INFO.whatsappUrl}
+                onClick={(e) => {
+                  if (!IS_CONTACT_ACTIVE) {
+                    e.preventDefault();
+                    alert('WhatsApp রিভিউ লিংক সাময়িকভাবে বন্ধ আছে।');
+                  }
+                }}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-brand-green-700 hover:bg-brand-green-800 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition"
+                className={`inline-flex items-center gap-1.5 bg-brand-green-700 text-white font-bold px-4 py-2 rounded-xl text-xs shadow transition ${
+                  !IS_CONTACT_ACTIVE ? 'opacity-60 cursor-not-allowed' : 'hover:bg-brand-green-800'
+                }`}
               >
                 <span>WhatsApp-এ মতামত শেয়ার করুন</span>
               </a>

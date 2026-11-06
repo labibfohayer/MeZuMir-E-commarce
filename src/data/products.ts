@@ -244,21 +244,24 @@ export const productsData: Product[] = [
   }
 ];
 
+// Global toggle for client contact & order actions (Set to true when client payment is settled)
+export const IS_CONTACT_ACTIVE = false;
+
 export const BRAND_INFO = {
   name: 'MeZuMir',
   headline: 'মিরসরাইয়ের খাবার, ঘরোয়া স্বাদে',
   subheadline: 'দেশি খাবার • ঘরোয়া যত্নে • আপনার অর্ডারে',
   tagline: 'মিরসরাইয়ের চেনা স্বাদ, সহজ অনলাইন অর্ডারে।',
   identity: 'মিরসরাইয়ের খাবার ও অনলাইন অর্ডার সেবা',
-  description: 'মিরসরাইয়ের সবার জন্য খাবার ও পানীয়ের অনলাইন অর্ডার। Facebook Page বা WhatsApp-এ অর্ডার করুন। আমরা অর্ডারের প্রাপ্যতা, মোট দাম ও সম্ভাব্য ডেলিভারি সময় নিশ্চিত করে জানাব।',
+  description: 'মিরসরাইয়ের সবার জন্য খাবার ও পানীয়ের অনলাইন অর্ডার। আমরা অর্ডারের প্রাপ্যতা, মোট দাম ও সম্ভাব্য ডেলিভারি সময় নিশ্চিত করে জানাব।',
   serviceArea: 'মিরসরাই — [এলাকা নিশ্চিত করুন]',
   deliveryChargeText: 'ফ্রি [প্রযোজ্য এলাকা নিশ্চিত করুন]',
   minOrderAmount: 300,
   minOrderText: '৳৩০০',
-  bkashNumber: '01854840499',
-  phone: '01854840499',
-  whatsappUrl: 'https://wa.me/8801854840499',
-  facebookUrl: 'https://www.facebook.com/share/19a1MeEwNe/',
+  bkashNumber: IS_CONTACT_ACTIVE ? '01854840499' : '০১XXXXXXXXX (স্থগিত)',
+  phone: IS_CONTACT_ACTIVE ? '01854840499' : '০১XXXXXXXXX (স্থগিত)',
+  whatsappUrl: IS_CONTACT_ACTIVE ? 'https://wa.me/8801854840499' : '#',
+  facebookUrl: IS_CONTACT_ACTIVE ? 'https://www.facebook.com/share/19a1MeEwNe/' : '#',
   orderHours: '২৪ ঘণ্টা অর্ডার পাঠানো যাবে',
   deliveryTimeEstimate: 'অর্ডার নিশ্চিত করার সময় জানানো হবে',
   suggestedAreas: [

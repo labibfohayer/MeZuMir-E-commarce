@@ -15,7 +15,7 @@ export const PrePublishChecklistModal: React.FC<PrePublishChecklistModalProps> =
     2: false,
     3: false,
     4: false,
-    5: true, // bKash 01854840499 is already verified
+    5: false, // bKash payment verification
     6: false,
     7: true, // real pictures added
   });
@@ -50,7 +50,7 @@ export const PrePublishChecklistModal: React.FC<PrePublishChecklistModalProps> =
     {
       id: 5,
       title: '৫. bKash নম্বর ও পেমেন্ট পদ্ধতি',
-      detail: 'bKash নম্বর 01854840499 সঠিক ও সক্রিয় রাখা হয়েছে। অন্য কোনো পেমেন্ট গেটওয়ে বা নগদ ক্যাশ পলিসি যোগ করতে চাইলে জানান।',
+      detail: 'পেমেন্ট ও অর্ডার সার্ভিস সাময়িকভাবে স্থগিত রাখা হয়েছে। সম্পূর্ণ সক্রিয় করতে কনফিগ আপডেট করুন।',
       fileHint: 'src/data/products.ts -> BRAND_INFO.bkashNumber',
     },
     {
