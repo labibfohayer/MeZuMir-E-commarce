@@ -27,10 +27,15 @@ interface AdminDashboardProps {
   onNavigateHome: () => void;
 }
 
+const CURRENT_ADMIN_AUTH_VERSION = 'v2_LabibSadiya_revoked_all';
+
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }) => {
-  // Auth state
+  // Auth state - automatically invalidates and logs out all previous devices/sessions
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return localStorage.getItem('mezumir_admin_auth') === 'true';
+    if (localStorage.getItem('mezumir_admin_auth')) {
+      localStorage.removeItem('mezumir_admin_auth');
+    }
+    return localStorage.getItem('mezumir_admin_session_version') === CURRENT_ADMIN_AUTH_VERSION;
   });
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState('');
@@ -103,7 +108,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
     // Password: LabibSadiya
     if (pinInput.trim() === 'LabibSadiya' || pinInput.trim().toLowerCase() === 'labibsadiya') {
       setIsAuthenticated(true);
-      localStorage.setItem('mezumir_admin_auth', 'true');
+      localStorage.setItem('mezumir_admin_session_version', CURRENT_ADMIN_AUTH_VERSION);
+      localStorage.removeItem('mezumir_admin_auth');
       setPinError('');
     } else {
       setPinError('ভুল পাসওয়ার্ড! সঠিক অ্যাডমিন পাসওয়ার্ড দিন');
@@ -112,6 +118,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
 
   const handleLogout = () => {
     setIsAuthenticated(false);
+    localStorage.removeItem('mezumir_admin_session_version');
     localStorage.removeItem('mezumir_admin_auth');
   };
 
