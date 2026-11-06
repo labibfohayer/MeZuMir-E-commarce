@@ -100,13 +100,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
   // Login handler
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default PIN: 01854840499 or 1234
-    if (pinInput === '01854840499' || pinInput === '1234') {
+    // Password: LabibSadiya
+    if (pinInput.trim() === 'LabibSadiya' || pinInput.trim().toLowerCase() === 'labibsadiya') {
       setIsAuthenticated(true);
       localStorage.setItem('mezumir_admin_auth', 'true');
       setPinError('');
     } else {
-      setPinError('ভুল পিন বা পাসওয়ার্ড! সঠিক পিন দিন (ডিফল্ট: 01854840499 অথবা 1234)');
+      setPinError('ভুল পাসওয়ার্ড! সঠিক অ্যাডমিন পাসওয়ার্ড দিন');
     }
   };
 
@@ -264,7 +264,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
                   type="password"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
-                  placeholder="পিন লিখুন..."
+                  placeholder="পাসওয়ার্ড লিখুন..."
                   className="w-full pl-9 pr-3 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-green-600"
                   autoFocus
                 />
@@ -281,7 +281,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateHome }
           </form>
 
           <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
-            <span>ডিফল্ট পিন: <strong className="text-brand-green-800 font-mono">01854840499</strong></span>
+            <span>নিরাপত্তা: <strong className="text-brand-green-800 font-medium">পাসওয়ার্ড সুরক্ষিত</strong></span>
             <button
               onClick={onNavigateHome}
               className="text-brand-green-700 hover:underline flex items-center gap-1 font-bold"
