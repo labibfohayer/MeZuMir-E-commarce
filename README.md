@@ -1,5 +1,7 @@
 # MeZuMir - Regional Culinary E-Commerce Platform & Digital Storefront
 
+[![Live Storefront](https://img.shields.io/badge/Live_Storefront-mezumir.pages.dev-success?style=for-the-badge&logo=cloudflare&logoColor=white)](https://mezumir.pages.dev/)
+
 A modern, high-performance web application and digital food ordering platform designed for regional culinary specialties, traditional snacks, bakery items, and local delicacies from Mirsharai, Bangladesh. Built with React 19, TypeScript, Vite, and Tailwind CSS.
 
 ---
@@ -91,7 +93,7 @@ npm install
 ```bash
 npm run dev
 ```
-Navigate to `http://localhost:5173` to test the live storefront with Hot Module Replacement (HMR).
+Navigate to `http://localhost:5173` for local development with HMR, or experience the live storefront directly at **[mezumir.pages.dev](https://mezumir.pages.dev/)**.
 
 ### 4. Build and Typecheck
 ```bash
